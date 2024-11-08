@@ -1,6 +1,11 @@
 use std::env;
 
+struct Cli {
+    str: String,
+}
+
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    println!("print arg -> {}", args[0]);
+    let str: String = env::args().nth(1).expect("no string giving");
+    let args = Cli { str };
+    println!("print arg -> {}", args.str);
 }
