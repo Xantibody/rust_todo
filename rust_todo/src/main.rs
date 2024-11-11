@@ -1,11 +1,13 @@
-use std::env;
-
-struct Cli {
-    str: String,
+use clap::Parser;
+#[derive(Parser, Debug)]
+#[command(version, about, long_about = None)]
+struct Args {
+    quotes: Vec<String>,
 }
 
 fn main() {
-    let str: String = env::args().nth(1).expect("no string giving");
-    let args = Cli { str };
-    println!("print arg -> {}", args.str);
+    let args: Args = Args::parse();
+    for v in &args.quotes {
+        println!("print arg -> {}", v);
+    }
 }
